@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(anime_log LANGUAGES CXX)
+project(habit_list LANGUAGES CXX)
 
-set(BINARY_NAME "anime_log")
+set(BINARY_NAME "habit_list")
 
 cmake_policy(SET CMP0063 NEW)
 

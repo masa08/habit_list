@@ -1,4 +1,4 @@
-package com.example.anime_log
+package com.example.habit_list
 
 import io.flutter.embedding.android.FlutterActivity
 

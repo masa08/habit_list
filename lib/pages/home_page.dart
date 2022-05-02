@@ -17,9 +17,20 @@ class _Body extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
         child: ListView.builder(
+          itemCount: 3,
           itemBuilder: (context, index) {
-          return const ListTile(
-            title: Text("anime details"),
+          return Card(
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(8),
+              title: Column(
+                children: const [
+                  Text("筋トレを継続的に行う"),
+                  Text("効果: 活力に満ちた自分", style: TextStyle(
+                    fontSize: 12
+                  ),)
+                ],
+              ),
+            ),
           );
         }),
       );

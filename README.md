@@ -1,4 +1,4 @@
-# anime_log
+# habit_list
 
 A new Flutter project.
 

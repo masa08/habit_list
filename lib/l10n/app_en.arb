@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
-  "title": "Anime Log",
+  "title": "Habit List",
+  "add": "Add habit",
   "home": "Home",
-  "search": "Search",
-  "mypage":"MyPage"
+  "timeline": "timeline"
 }

@@ -1,7 +1,7 @@
 {
   "@@locale": "ja",
-  "title": "Anime Log",
+  "title": "習慣リスト",
+  "add": "習慣を追加",
   "home": "ホーム",
-  "search": "検索",
-  "mypage":"マイページ"
+  "timeline": "タイムライン"
 }

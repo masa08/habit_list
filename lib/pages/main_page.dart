@@ -1,9 +1,8 @@
-import 'package:anime_log/hooks/use_l10n.dart';
-import 'package:anime_log/pages/home_page.dart';
-import 'package:anime_log/pages/search_page.dart';
-import 'package:anime_log/pages/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:habit_list/hooks/use_l10n.dart';
+import 'package:habit_list/pages/home_page.dart';
+import 'package:habit_list/pages/timeline_page.dart';
 
 class MainPage extends HookWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -18,19 +17,14 @@ class MainPage extends HookWidget {
         label: l10n.home
       ),
       BottomNavigationBarItem(
-        icon: const Icon(Icons.search),
-        label: l10n.search,
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.person),
-        label: l10n.mypage,
+        icon: const Icon(Icons.timeline),
+        label: l10n.timeline,
       ),
     ];
 
     final pages = [
       const HomePage(),
-      const SearchPage(),
-      const UserPage()
+      const TimeLinePage(),
     ];
 
     final currentIndex = useState(Pages.home.index);
@@ -47,13 +41,12 @@ class MainPage extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.menu),
         title: Text(l10n.title),
       ),
       body: currentPage.value,
       floatingActionButton: FloatingActionButton(
         onPressed: onPressed,
-        tooltip: 'Add Anime',
+        tooltip: l10n.add,
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -69,5 +62,4 @@ class MainPage extends HookWidget {
 enum Pages {
   home,
   search,
-  user,
 }

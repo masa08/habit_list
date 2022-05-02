@@ -5,19 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "anime_log",
+      "name": "habit_list",
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug"
     },
     {
-      "name": "anime_log (profile mode)",
+      "name": "habit_list (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "anime_log (release mode)",
+      "name": "habit_list (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
