@@ -1,3 +1,4 @@
+import 'package:anime_log/hooks/use_l10n.dart';
 import 'package:anime_log/pages/home_page.dart';
 import 'package:anime_log/pages/search_page.dart';
 import 'package:anime_log/pages/user_page.dart';
@@ -9,20 +10,20 @@ class MainPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 国際化対応(L10)
+    final l10n = useL10n();
 
     final bottomTabItems = <BottomNavigationBarItem>[
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Home',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.home),
+        label: l10n.home
       ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.search),
-        label: 'Search',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.search),
+        label: l10n.search,
       ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.person),
-        label: 'MyPage',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.person),
+        label: l10n.mypage,
       ),
     ];
 
@@ -35,6 +36,10 @@ class MainPage extends HookWidget {
     final currentIndex = useState(Pages.home.index);
     final currentPage = useState(pages[currentIndex.value]);
 
+    onPressed () {
+      print("onPressed");
+    }
+
     onTap(index) {
       currentIndex.value = index;
       currentPage.value = pages[index];
@@ -43,11 +48,11 @@ class MainPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.menu),
-        title: const Text("Anime log"),
+        title: Text(l10n.title),
       ),
       body: currentPage.value,
       floatingActionButton: FloatingActionButton(
-        onPressed: () { print("onpressed"); },
+        onPressed: onPressed,
         tooltip: 'Add Anime',
         child: const Icon(Icons.add),
       ),
