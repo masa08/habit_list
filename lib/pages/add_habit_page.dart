@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:habit_list/hooks/use_l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,18 +14,80 @@ class AddHabitPage extends StatelessWidget {
   }
 }
 
-
 class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
+    final isEnabled = useState(false);
+
+    onTitleChanged (value) {}
+    onShortTermGoalChanged (value) {}
+    onLongTermGoalChanged (value) {}
+    onRoutineDateChanged (value) {}
+    onPressed () {}
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.add),
       ),
-      body: const Center(
-        child: Text("add habit page"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("習慣を入力してください"),
+            SizedBox(
+              width: 200,
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: "習慣名"
+                ),
+                onChanged: onTitleChanged,
+              ),
+            ),
+            SizedBox(
+              width: 200,
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: "短期目標"
+                ),
+                onChanged: onShortTermGoalChanged,
+              ),
+            ),
+            SizedBox(
+              width: 200,
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: "長期目標"
+                ),
+                onChanged: onLongTermGoalChanged,
+              ),
+            ),
+            SizedBox(
+              width: 200,
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: "時間指定"
+                ),
+                onChanged: onRoutineDateChanged,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 50),
+              child: SizedBox(
+                width: 260,
+                height: 50,
+                child: ElevatedButton(
+                    // onPressed: isEnabled.value ? onPressed : null,
+                    onPressed: isEnabled.value ? onPressed : null,
+                    child: const Text("登録する"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                    )
+                  )
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
