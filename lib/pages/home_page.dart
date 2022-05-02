@@ -23,6 +23,6 @@ final sampleHabitList = [
 class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return HabitList(habits: sampleHabitList, isSetting: true,);
+    return HabitList(habits: sampleHabitList);
   }
 }

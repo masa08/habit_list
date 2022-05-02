@@ -18,13 +18,33 @@ class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
-    final isEnabled = useState(false);
 
-    onTitleChanged (value) {}
-    onShortTermGoalChanged (value) {}
-    onLongTermGoalChanged (value) {}
-    onRoutineDateChanged (value) {}
-    onPressed () {}
+    final title = useState('');
+    final shortTermGoal = useState('');
+    final longTermGoal = useState('');
+    final routineDate = useState('');
+
+    final isEnabled = title.value.isNotEmpty && shortTermGoal.value.isNotEmpty && longTermGoal.value.isNotEmpty && routineDate.value.isNotEmpty;
+
+    onTitleChanged (value) {
+      title.value = value;
+    }
+    onShortTermGoalChanged (value) {
+      shortTermGoal.value = value;
+    }
+    onLongTermGoalChanged (value) {
+      longTermGoal.value = value;
+    }
+    onRoutineDateChanged (value) {
+      routineDate.value = value;
+    }
+    onPressed () {
+      // TODO: send data to firestore
+      print(title.value);
+      print(shortTermGoal.value);
+      print(longTermGoal.value);
+      print(routineDate.value);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -77,8 +97,7 @@ class _Body extends HookConsumerWidget {
                 width: 260,
                 height: 50,
                 child: ElevatedButton(
-                    // onPressed: isEnabled.value ? onPressed : null,
-                    onPressed: isEnabled.value ? onPressed : null,
+                    onPressed: isEnabled ? onPressed : null,
                     child: const Text("登録する"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,

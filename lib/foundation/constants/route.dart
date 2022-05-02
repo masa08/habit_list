@@ -1,10 +1,10 @@
-// use router define
+// used for page navigation
 class RoutePath {
   static const home = "/";
   static const add = "/add";
 }
 
-// use page navigation
+// used for router define
 class RouteName {
   static const add = "add";
 }
