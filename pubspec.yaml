@@ -13,10 +13,18 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
-  go_router: ^3.1.0
   cupertino_icons: ^1.0.2
+
+  # router
+  go_router: ^3.1.0
+
+  # firebase
   firebase_core: ^1.15.0
+  firebase_auth: ^3.3.16
+
+  # auth
+  sign_in_with_apple: ^3.3.0
+  crypto: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +32,7 @@ dev_dependencies:
 
   flutter_lints: ^1.0.0
 
+  # state management
   flutter_hooks: ^0.18.0
   hooks_riverpod: ^2.0.0-dev.5
 
