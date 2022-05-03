@@ -6,9 +6,8 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:habit_list/foundation/constants/route.dart';
+import 'package:habit_list/hooks/use_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
@@ -65,8 +64,8 @@ class _Body extends HookConsumerWidget {
         email: "sample@sample.com",
         password: "password"
       );
-      final context = useContext();
-      GoRouter.of(context).go(RoutePath.home);
+      final router = useRouter();
+      router.go(RoutePath.home);
     }
     return Scaffold(
       body: Container(

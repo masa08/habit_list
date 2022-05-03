@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:habit_list/foundation/constants/route.dart';
 import 'package:habit_list/hooks/use_l10n.dart';
+import 'package:habit_list/hooks/use_router.dart';
 import 'package:habit_list/pages/home_page.dart';
 import 'package:habit_list/pages/timeline_page.dart';
 
@@ -35,7 +35,8 @@ class MainPage extends HookWidget {
     final currentPage = useState(pages[currentIndex.value]);
 
     onPressed () {
-      GoRouter.of(context).go(RoutePath.add);
+      final router = useRouter();
+      router.go(RoutePath.add);
     }
 
     onTap(index) {
