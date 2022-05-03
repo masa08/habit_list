@@ -46,6 +46,15 @@ class MainPage extends HookWidget {
         title: Text(l10n.title),
       ),
       body: currentPage.value,
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: Column(children: const [Text('Your Name'), Text('Your Info')],)
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: onPressed,
         tooltip: l10n.add,
