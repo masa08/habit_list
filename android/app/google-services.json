@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "489937097048",
+    "project_id": "habit-list-f4e87",
+    "storage_bucket": "habit-list-f4e87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489937097048:android:e45f347d4f8d665c8bd52d",
+        "android_client_info": {
+          "package_name": "com.example.habit_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489937097048-gu866n063o5dd3lhbt8ddsi5rhldu6n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWf_3YI01HGu_zi3i1rUcQusEx54LYJwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489937097048-gu866n063o5dd3lhbt8ddsi5rhldu6n8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "489937097048-5f4k5c34trgpj5t8bvoorsvqfua0io1n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.animeLog"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
