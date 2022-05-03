@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +13,7 @@ class MainPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = useL10n();
+    final user = FirebaseAuth.instance.currentUser;
 
     final bottomTabItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
@@ -50,7 +52,9 @@ class MainPage extends HookWidget {
         child: Column(
           children: [
             DrawerHeader(
-              child: Column(children: const [Text('Your Name'), Text('Your Info')],)
+              child: Column(children: [
+                Text("email: " + user!.email!)
+              ])
             ),
           ],
         ),

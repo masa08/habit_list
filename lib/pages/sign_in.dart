@@ -6,11 +6,12 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:habit_list/foundation/constants/route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-/// Generates a cryptographically secure random nonce, to be included in a
-/// credential request.
 String generateNonce([int length = 32]) {
   const charset =
       '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
@@ -19,7 +20,6 @@ String generateNonce([int length = 32]) {
       .join();
 }
 
-/// Returns the sha256 hash of [input] in hex notation.
 String sha256ofString(String input) {
   final bytes = utf8.encode(input);
   final digest = sha256.convert(bytes);
@@ -27,14 +27,9 @@ String sha256ofString(String input) {
 }
 
 Future<UserCredential> signInWithApple() async {
-  // To prevent replay attacks with the credential returned from Apple, we
-  // include a nonce in the credential request. When signing in with
-  // Firebase, the nonce in the id token returned by Apple, is expected to
-  // match the sha256 hash of `rawNonce`.
   final rawNonce = generateNonce();
   final nonce = sha256ofString(rawNonce);
 
-  // Request credential for the currently signed in Apple account.
   final appleCredential = await SignInWithApple.getAppleIDCredential(
     scopes: [
       AppleIDAuthorizationScopes.email,
@@ -43,14 +38,11 @@ Future<UserCredential> signInWithApple() async {
     nonce: nonce,
   );
 
-  // Create an `OAuthCredential` from the credential returned by Apple.
   final oauthCredential = OAuthProvider("apple.com").credential(
     idToken: appleCredential.identityToken,
     rawNonce: rawNonce,
   );
 
-  // Sign in the user with Firebase. If the nonce we generated earlier does
-  // not match the nonce in `appleCredential.identityToken`, sign in will fail.
   return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
 }
 
@@ -68,12 +60,20 @@ class SignInPage extends StatelessWidget {
 class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Future<void> testSignIn() async {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: "sample@sample.com",
+        password: "password"
+      );
+      final context = useContext();
+      GoRouter.of(context).go(RoutePath.home);
+    }
     return Scaffold(
       body: Container(
           padding: const EdgeInsets.all(10),
-          child: const Center(
+          child: Center(
             child: SignInWithAppleButton(
-              onPressed: signInWithApple
+              onPressed: testSignIn
             ),
           ),
       ),
