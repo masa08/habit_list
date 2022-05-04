@@ -11,6 +11,11 @@ class UserNotifier extends StateNotifier<LoginUser?> {
     state = currentUser;
   }
 
+  Future<void> logout() async {
+    await LoginUserRepository().logout();
+    state = null;
+  }
+
   Future<void> signInWithApple() async {
     await LoginUserRepository().signInWithApple();
     final currentUser = LoginUserRepository().getCurrentUser();

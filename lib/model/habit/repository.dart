@@ -7,9 +7,10 @@ class HabitRepository {
   final user = FirebaseAuth.instance.currentUser;
 
   Future<List<Habit>> initHome() async {
+    if (user == null) return [];
     final fsHabits = await FirebaseFirestore.instance
         .collection('habits')
-        .where("userId", isEqualTo: user!.uid)
+        .where("userId", isEqualTo: user?.uid)
         .get();
     final habits = fsHabits.docs.map((habit) {
       // TODO: json serializeでなんとかしたい。
@@ -38,7 +39,7 @@ class HabitRepository {
       "shortTermGoal": habit.shortTermGoal,
       "longTermGoal": habit.longTermGoal,
       "routineDate": habit.routineDate,
-      "userId": user!.uid,
+      "userId": user?.uid,
     });
   }
 }

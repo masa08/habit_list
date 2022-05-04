@@ -24,13 +24,19 @@ String sha256ofString(String input) {
 class LoginUserRepository {
   LoginUser? getCurrentUser() {
     final fUser = FirebaseAuth.instance.currentUser;
-    final user = LoginUser(fUser!.email!);
+    if (fUser == null) return null;
+
+    final user = LoginUser(fUser.email!);
     return user;
   }
 
   Future<void> testSignIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: "sample@sample.com", password: "password");
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   Future<void> signInWithApple() async {

@@ -15,7 +15,7 @@ class MainPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
     final router = useRouter();
-    final currentUser = ref.watch(userProvider);
+    final userModel = ref.read(userProvider.notifier);
 
     final bottomTabItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(icon: const Icon(Icons.home), label: l10n.home),
@@ -51,8 +51,22 @@ class MainPage extends HookConsumerWidget {
         child: Column(
           children: [
             DrawerHeader(
-                child:
-                    Column(children: [Text("email: " + currentUser!.email)])),
+                child: Column(children: [
+              Container(
+                margin: const EdgeInsets.only(top: 50),
+                child: SizedBox(
+                    width: 260,
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          await userModel.logout();
+                        },
+                        child: Text(l10n.logout),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue,
+                        ))),
+              ),
+            ])),
           ],
         ),
       ),

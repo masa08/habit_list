@@ -9,5 +9,6 @@
   "habitShortTermGoal": "short term goal",
   "habitLongTermGoal": "long term goal",
   "habitRoutineTime": "routine date",
-  "register": "register"
+  "register": "register",
+  "logout": "logout"
 }

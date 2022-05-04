@@ -9,5 +9,6 @@
   "habitShortTermGoal": "短期目標",
   "habitLongTermGoal": "長期目標",
   "habitRoutineTime": "時間指定",
-  "register": "登録する"
+  "register": "登録する",
+  "logout": "ログアウト"
 }
