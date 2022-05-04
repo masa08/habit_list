@@ -5,13 +5,14 @@ import 'package:habit_list/foundation/constants/route.dart';
 import 'package:habit_list/pages/add_habit_page.dart';
 import 'package:habit_list/pages/main_page.dart';
 import 'package:habit_list/pages/sign_in.dart';
+import 'package:habit_list/view_model/user.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final routerProvider = Provider((ref) {
-  final user = FirebaseAuth.instance.currentUser;
+  final currentUser = ref.watch(userProvider);
 
   return GoRouter(
-    initialLocation: user != null ? RoutePath.home : RoutePath.singIn,
+    initialLocation: currentUser != null ? RoutePath.home : RoutePath.singIn,
     routes: [
       GoRoute(
         path: RoutePath.home,

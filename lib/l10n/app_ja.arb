@@ -2,6 +2,12 @@
   "@@locale": "ja",
   "title": "習慣リスト",
   "add": "習慣を追加",
+  "addText": "習慣を入力してください",
   "home": "ホーム",
-  "timeline": "タイムライン"
+  "timeline": "タイムライン",
+  "habitTitle": "習慣名",
+  "habitShortTermGoal": "短期目標",
+  "habitLongTermGoal": "長期目標",
+  "habitRoutineTime": "時間指定",
+  "register": "登録する"
 }

@@ -2,6 +2,12 @@
   "@@locale": "en",
   "title": "Habit List",
   "add": "Add habit",
+  "addText": "Please register your habit",
   "home": "Home",
-  "timeline": "timeline"
+  "timeline": "timeline",
+  "habitTitle": "title",
+  "habitShortTermGoal": "short term goal",
+  "habitLongTermGoal": "long term goal",
+  "habitRoutineTime": "routine date",
+  "register": "register"
 }

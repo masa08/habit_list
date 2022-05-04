@@ -21,7 +21,6 @@ class _Body extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
     final router = useRouter();
-
     final habitModel = ref.read(habitsProvider.notifier);
 
     final title = useState('');
@@ -55,32 +54,32 @@ class _Body extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("習慣を入力してください"),
+            Text(l10n.addText),
             SizedBox(
               width: 200,
               child: TextField(
-                decoration: const InputDecoration(hintText: "習慣名"),
+                decoration: InputDecoration(hintText: l10n.habitTitle),
                 onChanged: onTitleChanged,
               ),
             ),
             SizedBox(
               width: 200,
               child: TextField(
-                decoration: const InputDecoration(hintText: "短期目標"),
+                decoration: InputDecoration(hintText: l10n.habitShortTermGoal),
                 onChanged: onShortTermGoalChanged,
               ),
             ),
             SizedBox(
               width: 200,
               child: TextField(
-                decoration: const InputDecoration(hintText: "長期目標"),
+                decoration: InputDecoration(hintText: l10n.habitLongTermGoal),
                 onChanged: onLongTermGoalChanged,
               ),
             ),
             SizedBox(
               width: 200,
               child: TextField(
-                decoration: const InputDecoration(hintText: "時間指定"),
+                decoration: InputDecoration(hintText: l10n.habitRoutineTime),
                 onChanged: onRoutineDateChanged,
               ),
             ),
@@ -91,7 +90,7 @@ class _Body extends HookConsumerWidget {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: isEnabled ? addHabit : null,
-                      child: const Text("登録する"),
+                      child: Text(l10n.register),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.blue,
                       ))),

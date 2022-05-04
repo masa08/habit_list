@@ -12,6 +12,7 @@ class HabitRepository {
         .where("userId", isEqualTo: user!.uid)
         .get();
     final habits = fsHabits.docs.map((habit) {
+      // TODO: json serializeでなんとかしたい。
       return Habit(habit["title"], habit["shortTermGoal"],
           habit["longTermGoal"], habit["routineDate"]);
     }).toList();
