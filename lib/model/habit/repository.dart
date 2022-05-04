@@ -6,12 +6,17 @@ import 'package:habit_list/model/habit/habit.dart';
 class HabitRepository {
   final user = FirebaseAuth.instance.currentUser;
 
-  // Future<void> init() {
-  //   final fsHabits = FirebaseFirestore.instance
-  //       .collection('habits')
-  //       .where("userId", isEqualTo: user!.uid)
-  //       .get();
-  // }
+  Future<List<Habit>> init() async {
+    final fsHabits = await FirebaseFirestore.instance
+        .collection('habits')
+        .where("userId", isEqualTo: user!.uid)
+        .get();
+    final habits = fsHabits.docs.map((habit) {
+      return Habit(habit["title"], habit["shortTermGoal"],
+          habit["longTermGoal"], habit["routineDate"]);
+    }).toList();
+    return habits;
+  }
 
   Future<void> add(Habit habit) async {
     CollectionReference habits =

@@ -14,8 +14,8 @@ class MainPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
-    final currentUser = ref.watch(userProvider);
     final router = useRouter();
+    final currentUser = ref.watch(userProvider);
 
     final bottomTabItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(icon: const Icon(Icons.home), label: l10n.home),
@@ -52,7 +52,7 @@ class MainPage extends HookConsumerWidget {
           children: [
             DrawerHeader(
                 child:
-                    Column(children: [Text("email: " + currentUser!.email!)])),
+                    Column(children: [Text("email: " + currentUser!.email)])),
           ],
         ),
       ),

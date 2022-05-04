@@ -2,11 +2,13 @@ import 'package:habit_list/model/habit/habit.dart';
 import 'package:habit_list/model/habit/repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+// 自分のhabitを管理する責務
 class HabitsNotifier extends StateNotifier<List<Habit>> {
   HabitsNotifier() : super([]);
 
   Future<void> initHabit() async {
-    // await HabitRepository().init();
+    final habits = await HabitRepository().init();
+    state = habits;
   }
 
   Future<void> addHabit(
