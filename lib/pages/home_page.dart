@@ -23,6 +23,7 @@ class _Body extends HookConsumerWidget {
 
     useEffect(() {
       habitModel.initHabit();
+      return null;
     }, []);
 
     return HabitList(habits: habits);

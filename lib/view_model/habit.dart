@@ -7,7 +7,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
   HabitsNotifier() : super([]);
 
   Future<void> initHabit() async {
-    final habits = await HabitRepository().init();
+    final habits = await HabitRepository().initHome();
     state = habits;
   }
 
