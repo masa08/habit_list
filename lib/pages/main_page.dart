@@ -1,26 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:habit_list/foundation/constants/route.dart';
 import 'package:habit_list/hooks/use_l10n.dart';
 import 'package:habit_list/hooks/use_router.dart';
 import 'package:habit_list/pages/home_page.dart';
+import 'package:habit_list/view_model/user.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:habit_list/pages/timeline_page.dart';
 
-class MainPage extends HookWidget {
+class MainPage extends HookConsumerWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
-    final user = FirebaseAuth.instance.currentUser;
+    final currentUser = ref.watch(userProvider);
     final router = useRouter();
 
     final bottomTabItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.home),
-        label: l10n.home
-      ),
+      BottomNavigationBarItem(icon: const Icon(Icons.home), label: l10n.home),
       BottomNavigationBarItem(
         icon: const Icon(Icons.timeline),
         label: l10n.timeline,
@@ -35,7 +33,7 @@ class MainPage extends HookWidget {
     final currentIndex = useState(Pages.home.index);
     final currentPage = useState(pages[currentIndex.value]);
 
-    onPressed () {
+    onPressed() {
       router.go(RoutePath.add);
     }
 
@@ -53,10 +51,8 @@ class MainPage extends HookWidget {
         child: Column(
           children: [
             DrawerHeader(
-              child: Column(children: [
-                Text("email: " + user!.email!)
-              ])
-            ),
+                child:
+                    Column(children: [Text("email: " + currentUser!.email!)])),
           ],
         ),
       ),
