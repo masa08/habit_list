@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:habit_list/conponents/habit_list.dart';
 import 'package:habit_list/domain/habit.dart';
+import 'package:habit_list/state/user.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,15 +16,28 @@ class HomePage extends StatelessWidget {
   }
 }
 
-final sampleHabitList = [
-  Habit("(home)筋トレを継続的に行う", "活力に満ちた自分", "圧倒的強さ", "AM 07:00", true),
-  Habit("(home)筋トレを継続的に行う", "活力に満ちた自分", "圧倒的強さ", "AM 07:00", true),
-  Habit("(home)筋トレを継続的に行う", "活力に満ちた自分", "圧倒的強さ", "AM 07:00", true),
-];
-
 class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return HabitList(habits: sampleHabitList);
+    final user = ref.watch(userProvider);
+    final Stream<QuerySnapshot> habitStream = FirebaseFirestore.instance.collection('habits').where("userId", isEqualTo: user!.uid).snapshots();
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: habitStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) return const Text('Something went wrong');
+        if (snapshot.connectionState == ConnectionState.waiting) return const Text("Loading");
+
+        var rawHabits = snapshot.data!.docs.map((DocumentSnapshot doc) {
+          Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+          return data;
+        }).toList();
+        var habits = rawHabits.map((habit) {
+          return Habit(habit["title"], habit["shortTermGoal"], habit["longTermGoal"], habit["routineDate"], true);
+        }).toList();
+
+        return HabitList(habits: habits);
+      },
+    );
   }
 }

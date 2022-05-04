@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:habit_list/hooks/use_l10n.dart';
+import 'package:habit_list/state/user.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddHabitPage extends StatelessWidget {
@@ -18,6 +20,7 @@ class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
+    final user = ref.watch(userProvider);
 
     final title = useState('');
     final shortTermGoal = useState('');
@@ -38,12 +41,18 @@ class _Body extends HookConsumerWidget {
     onRoutineDateChanged (value) {
       routineDate.value = value;
     }
-    onPressed () {
-      // TODO: send data to firestore
-      print(title.value);
-      print(shortTermGoal.value);
-      print(longTermGoal.value);
-      print(routineDate.value);
+
+    Future<void> addHabit () {
+      CollectionReference habits = FirebaseFirestore.instance.collection('habits');
+      return habits.add({
+        "title": title.value,
+        "shortTermGoal": shortTermGoal.value,
+        "longTermGoal": longTermGoal.value,
+        "routineDate": routineDate.value,
+        "userId": user!.uid,
+      })
+      .then((value) => print("habit Added"))
+      .catchError((error) => print("Failed to add habit: $error"));
     }
 
     return Scaffold(
@@ -97,7 +106,7 @@ class _Body extends HookConsumerWidget {
                 width: 260,
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: isEnabled ? onPressed : null,
+                    onPressed: isEnabled ? addHabit : null,
                     child: const Text("登録する"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,

@@ -21,7 +21,7 @@ class HabitList extends StatelessWidget {
                 Text("短期目標: " + habits[index].shortTermGoal, style: const TextStyle(
                   fontSize: 12
                 ),),
-                Text("長期目標: " + habits[index].shortTermGoal, style: const TextStyle(
+                Text("長期目標: " + habits[index].longTermGoal, style: const TextStyle(
                   fontSize: 12
                 ),),
                 Text("時間: " + habits[index].routineDate, style: const TextStyle(

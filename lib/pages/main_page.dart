@@ -14,6 +14,7 @@ class MainPage extends HookWidget {
   Widget build(BuildContext context) {
     final l10n = useL10n();
     final user = FirebaseAuth.instance.currentUser;
+    final router = useRouter();
 
     final bottomTabItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
@@ -35,7 +36,6 @@ class MainPage extends HookWidget {
     final currentPage = useState(pages[currentIndex.value]);
 
     onPressed () {
-      final router = useRouter();
       router.go(RoutePath.add);
     }
 
