@@ -13,9 +13,7 @@ class HabitRepository {
         .where("userId", isEqualTo: user?.uid)
         .get();
     final habits = fsHabits.docs.map((habit) {
-      // TODO: json serializeでなんとかしたい。
-      return Habit(habit["title"], habit["shortTermGoal"],
-          habit["longTermGoal"], habit["routineDate"]);
+      return Habit.fromJson(habit.data());
     }).toList();
     return habits;
   }
@@ -24,22 +22,16 @@ class HabitRepository {
     final fsHabits =
         await FirebaseFirestore.instance.collection('habits').get();
     final habits = fsHabits.docs.map((habit) {
-      return Habit(habit["title"], habit["shortTermGoal"],
-          habit["longTermGoal"], habit["routineDate"]);
+      return Habit.fromJson(habit.data());
     }).toList();
     return habits;
   }
 
   Future<void> add(Habit habit) async {
+    Map<String, dynamic> jsonData = habit.toJson();
+
     CollectionReference habits =
         FirebaseFirestore.instance.collection('habits');
-
-    await habits.add({
-      "title": habit.title,
-      "shortTermGoal": habit.shortTermGoal,
-      "longTermGoal": habit.longTermGoal,
-      "routineDate": habit.routineDate,
-      "userId": user?.uid,
-    });
+    await habits.add(jsonData);
   }
 }
