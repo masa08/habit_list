@@ -5,22 +5,32 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "habit_list",
+      "name": "debug-development",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "debug"
+      "flutterMode": "debug",
+      "args": ["--flavor", "development"]
     },
     {
-      "name": "habit_list (profile mode)",
+      "name": "release-development",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
+      "flutterMode": "release",
+      "args": ["--flavor", "development"]
     },
     {
-      "name": "habit_list (release mode)",
+      "name": "release-staging",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
+      "flutterMode": "release",
+      "args": ["--flavor", "staging"]
+    },
+    {
+      "name": "release-production",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "args": ["--flavor", "production"]
     }
   ]
 }
