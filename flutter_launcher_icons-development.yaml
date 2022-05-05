@@ -1,0 +1,5 @@
+# flutter_launcher_icons-development.yaml
+flutter_icons:
+  image_path: 'assets/images/icon-dev.png'
+  android: false
+  ios: true
