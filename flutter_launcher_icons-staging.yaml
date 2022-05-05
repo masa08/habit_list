@@ -1,5 +1,5 @@
 # flutter_launcher_icons-staging.yaml
 flutter_icons:
   image_path: 'assets/images/icon-stg.png'
-  android: false
+  android: true
   ios: true

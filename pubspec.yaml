@@ -45,7 +45,7 @@ dev_dependencies:
   freezed: ^2.0.2
 
 flutter_icons:
-  android: false
+  android: true
   ios: true
 
 flutter:
