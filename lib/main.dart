@@ -9,8 +9,8 @@ import 'package:habit_list/view_model/auth.dart';
 import 'package:habit_list/view_model/habit.dart';
 import 'package:habit_list/view_model/timeline_habit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'firebase_options.dart';
+import 'package:habit_list/firebase_options_production.dart' as production;
+import 'package:habit_list/firebase_options_development.dart' as development;
 
 // dependency injection
 final authRepositoryProvider = Provider.autoDispose(
@@ -33,12 +33,24 @@ final timelineHabitsProvider =
   return TimeLineHabitsNotifier(ref.read(habitRepositoryProvider));
 });
 
+FirebaseOptions getFirebaseOptions() {
+  const flavor = String.fromEnvironment('FLAVOR');
+  switch (flavor) {
+    case 'development':
+      return development.DefaultFirebaseOptions.currentPlatform;
+    case 'production':
+      return production.DefaultFirebaseOptions.currentPlatform;
+    default:
+      throw ArgumentError('Not available flavor');
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // firebase
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: getFirebaseOptions(),
   );
 
   // run
