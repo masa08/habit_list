@@ -4,10 +4,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 自分のhabitを管理する責務
 class HabitsNotifier extends StateNotifier<List<Habit>> {
-  HabitsNotifier() : super([]);
+  HabitsNotifier(this._repository) : super([]);
+
+  final HabitRepositoryInterface _repository;
 
   Future<void> initHabit() async {
-    final habits = await HabitRepository().initHome();
+    final habits = await _repository.initHome();
     state = habits;
   }
 
@@ -17,12 +19,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       required String longTermGoal,
       required String routineDate}) async {
     final habit = Habit(title, shortTermGoal, longTermGoal, routineDate);
-    await HabitRepository().add(habit);
+    await _repository.add(habit);
     state = [...state, habit];
   }
 }
-
-final habitsProvider =
-    StateNotifierProvider<HabitsNotifier, List<Habit>>((ref) {
-  return HabitsNotifier();
-});

@@ -1,16 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_user.dart';
+part of 'auth.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LoginUser _$$_LoginUserFromJson(Map<String, dynamic> json) => _$_LoginUser(
+_$_Auth _$$_AuthFromJson(Map<String, dynamic> json) => _$_Auth(
       json['email'] as String,
     );
 
-Map<String, dynamic> _$$_LoginUserToJson(_$_LoginUser instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_AuthToJson(_$_Auth instance) => <String, dynamic>{
       'email': instance.email,
     };

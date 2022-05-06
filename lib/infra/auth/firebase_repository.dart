@@ -1,10 +1,10 @@
-// TODO: DIできるようにして、firebaseの知識をここから逃す
 import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:habit_list/model/loginUser/login_user.dart';
+import 'package:habit_list/model/auth/auth.dart';
+import 'package:habit_list/model/auth/repositoy.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 String generateNonce([int length = 32]) {
@@ -21,24 +21,28 @@ String sha256ofString(String input) {
   return digest.toString();
 }
 
-class LoginUserRepository {
-  LoginUser? getCurrentUser() {
+class FirebaseAuthRepository implements AuthRepositoryInterface {
+  @override
+  Auth? getCurrentUser() {
     final fUser = FirebaseAuth.instance.currentUser;
     if (fUser == null) return null;
 
-    final user = LoginUser(fUser.email!);
+    final user = Auth(fUser.email!);
     return user;
   }
 
+  @override
   Future<void> testSignIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: "sample@sample.com", password: "password");
   }
 
+  @override
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
   }
 
+  @override
   Future<void> signInWithApple() async {
     final rawNonce = generateNonce();
     final nonce = sha256ofString(rawNonce);

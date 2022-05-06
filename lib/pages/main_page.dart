@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:habit_list/foundation/constants/route.dart';
 import 'package:habit_list/hooks/use_l10n.dart';
 import 'package:habit_list/hooks/use_router.dart';
+import 'package:habit_list/main.dart';
 import 'package:habit_list/pages/home_page.dart';
-import 'package:habit_list/view_model/user.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:habit_list/pages/timeline_page.dart';
 
@@ -15,7 +15,7 @@ class MainPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
     final router = useRouter();
-    final userModel = ref.read(userProvider.notifier);
+    final userModel = ref.read(authProvider.notifier);
 
     final bottomTabItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(icon: const Icon(Icons.home), label: l10n.home),

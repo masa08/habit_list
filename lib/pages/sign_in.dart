@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_list/foundation/constants/route.dart';
 import 'package:habit_list/hooks/use_router.dart';
-import 'package:habit_list/view_model/user.dart';
+import 'package:habit_list/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
@@ -20,7 +20,7 @@ class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final userModel = ref.read(userProvider.notifier);
+    final userModel = ref.read(authProvider.notifier);
 
     onPress() async {
       await userModel.testSignIn();

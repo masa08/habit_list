@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_list/conponents/habit_list.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:habit_list/view_model/habit.dart';
+import 'package:habit_list/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends StatelessWidget {
