@@ -35,6 +35,7 @@ class FirebaseHabitRepository implements HabitRepositoryInterface {
 
     CollectionReference habits =
         FirebaseFirestore.instance.collection('habits');
-    await habits.add(jsonData);
+    final res = await habits.add(jsonData);
+    await res.update({"userId": user?.uid});
   }
 }
