@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "489937097048",
-    "project_id": "habit-list-f4e87",
-    "storage_bucket": "habit-list-f4e87.appspot.com"
+    "project_number": "731518427923",
+    "project_id": "habit-list-dev",
+    "storage_bucket": "habit-list-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:489937097048:android:e45f347d4f8d665c8bd52d",
+        "mobilesdk_app_id": "1:731518427923:android:6b1479beebf92f5eca30e6",
         "android_client_info": {
-          "package_name": "com.example.habit_list"
+          "package_name": "com.ushimaru08.habitList.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "489937097048-gu866n063o5dd3lhbt8ddsi5rhldu6n8.apps.googleusercontent.com",
+          "client_id": "731518427923-kqahvlt3b7eo0ujb2phcms540glmhibg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDWf_3YI01HGu_zi3i1rUcQusEx54LYJwI"
+          "current_key": "AIzaSyDdKFFsRFV3KSUKLJ1t6sRcaGzpQehn0vA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "489937097048-gu866n063o5dd3lhbt8ddsi5rhldu6n8.apps.googleusercontent.com",
+              "client_id": "731518427923-kqahvlt3b7eo0ujb2phcms540glmhibg.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "489937097048-5f4k5c34trgpj5t8bvoorsvqfua0io1n.apps.googleusercontent.com",
+              "client_id": "731518427923-a2dsih6au9l31llkmp1ebcllumvepa4t.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.animeLog"
+                "bundle_id": "com.ushimaru08.habitList.dev"
               }
             }
           ]
