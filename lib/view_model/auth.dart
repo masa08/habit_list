@@ -22,4 +22,10 @@ class AuthNotifier extends StateNotifier<Auth?> {
     final currentUser = _repository.getCurrentUser();
     state = currentUser;
   }
+
+  Future<void> signInWithGoogle() async {
+    await _repository.signInWithGoogle();
+    final currentUser = _repository.getCurrentUser();
+    state = currentUser;
+  }
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:habit_list/model/auth/auth.dart';
 import 'package:habit_list/model/auth/repositoy.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -39,6 +40,11 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
 
   @override
   Future<void> logout() async {
+    // TODO: google signinとapple signinのログアウト時処理。
+    // await appleSignin.signOut();
+    // final GoogleSignIn googleSignIn = GoogleSignIn();
+    // await googleSignIn.signOut();
+
     await FirebaseAuth.instance.signOut();
   }
 
@@ -60,6 +66,46 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
       rawNonce: rawNonce,
     );
 
-    await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    try {
+      await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'account-exists-with-different-credential') {
+        // handle the error here
+      } else if (e.code == 'invalid-credential') {
+        // handle the error here
+      }
+    } catch (e) {
+      // handle the error here
+    }
+  }
+
+  @override
+  Future<void> signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
+
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      try {
+        await FirebaseAuth.instance.signInWithCredential(credential);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'account-exists-with-different-credential') {
+          // handle the error here
+        } else if (e.code == 'invalid-credential') {
+          // handle the error here
+        }
+      } catch (e) {
+        // handle the error here
+      }
+    }
   }
 }
