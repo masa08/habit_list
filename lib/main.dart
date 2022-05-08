@@ -38,6 +38,8 @@ FirebaseOptions getFirebaseOptions() {
   switch (flavor) {
     case 'development':
       return development.DefaultFirebaseOptions.currentPlatform;
+    case 'staging':
+      return development.DefaultFirebaseOptions.currentPlatform;
     case 'production':
       return production.DefaultFirebaseOptions.currentPlatform;
     default:
