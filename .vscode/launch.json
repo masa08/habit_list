@@ -23,7 +23,7 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "args": ["--flavor", "staging", "--dart-define", "FLAVOR=development"]
+      "args": ["--flavor", "staging", "--dart-define", "FLAVOR=staging"]
     },
     {
       "name": "release-production",
